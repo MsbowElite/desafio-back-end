@@ -1,66 +1,35 @@
-﻿using FluentValidation.Results;
+﻿using System;
+using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Conexa.WebApi.Core
 {
     [Route("api/[controller]")]
     [ApiController]
-    public abstract class ApiController : ControllerBase
+    public class ApiControllerBase : ControllerBase
     {
-        private readonly ICollection<string> _errors = new List<string>();
+        private readonly IMediator _mediator;
 
-        protected ActionResult CustomResponse(object result = null)
+        public ApiControllerBase(IMediator mediator)
         {
-            if (IsOperationValid())
-            {
-                return Ok(result);
-            }
-
-            return BadRequest(new ValidationProblemDetails(new Dictionary<string, string[]>
-            {
-                { "Messages", _errors.ToArray() }
-            }));
+            _mediator = mediator ?? throw new ArgumentNullException();
         }
 
-        protected ActionResult CustomResponse(ModelStateDictionary modelState)
+        protected async Task<TResult> QueryAsync<TResult>(IRequest<TResult> query)
         {
-            var errors = modelState.Values.SelectMany(e => e.Errors);
-            foreach (var error in errors)
-            {
-                AddError(error.ErrorMessage);
-            }
-
-            return CustomResponse();
+            return await _mediator.Send(query);
         }
 
-        protected ActionResult CustomResponse(ValidationResult validationResult)
+        protected ActionResult<T> Single<T>(T data)
         {
-            foreach (var error in validationResult.Errors)
-            {
-                AddError(error.ErrorMessage);
-            }
-
-            return CustomResponse();
+            if (data == null) return NotFound();
+            return Ok(data);
         }
 
-        protected bool IsOperationValid()
+        protected async Task<TResult> CommandAsync<TResult>(IRequest<TResult> command)
         {
-            return !_errors.Any();
-        }
-
-        protected void AddError(string erro)
-        {
-            _errors.Add(erro);
-        }
-
-        protected void ClearErrors()
-        {
-            _errors.Clear();
+            return await _mediator.Send(command);
         }
     }
 }

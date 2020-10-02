@@ -1,5 +1,4 @@
-﻿using Conexa.Core.Communication.Mediator;
-using FluentValidation.Results;
+﻿using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,8 +12,6 @@ namespace Conexa.Core.Messages
         protected CommandHandler()
         {
         }
-
-        protected IMediatorHandler MediatorHandler { get; private set; }
 
         protected void AddError(string mensagem)
         {

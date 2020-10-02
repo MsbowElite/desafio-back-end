@@ -1,9 +1,6 @@
 ﻿using AutoMapper;
-using Conexa.Music.Application.ViewModels;
+using Conexa.Music.Application.Songs;
 using Conexa.Music.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Conexa.Music.Application.AutoMapper
 {
@@ -11,7 +8,7 @@ namespace Conexa.Music.Application.AutoMapper
     {
         public DomainToViewModelMappingProfile()
         {
-            CreateMap<Item, SongViewModel>();
+            CreateMap<Item, SongDto>();
         }
     }
 }

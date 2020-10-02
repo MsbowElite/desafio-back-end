@@ -1,6 +1,8 @@
-﻿using Conexa.Music.Application.Interfaces;
-using Conexa.Music.Application.ViewModels;
+﻿using Conexa.Music.Application.Songs;
+using Conexa.Music.Application.Songs.GetSongsByTemperatureOfCity;
+using Conexa.Music.Application.Songs.GetSongsByTemperatureOfCoordinates;
 using Conexa.WebApi.Core;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,17 +14,16 @@ namespace Conexa.Music.Api.Controllers
 {
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public class SongsController : ApiController
+    public class SongsController : ApiControllerBase
     {
-        private readonly ISongAppService _songAppService;
+        private readonly IMediator _mediator;
 
-        public SongsController(ISongAppService songAppService)
+        public SongsController(IMediator mediator) : base(mediator)
         {
-            _songAppService = songAppService;
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<SongViewModel>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(IEnumerable<SongDto>), StatusCodes.Status200OK)]
         public async Task<IActionResult> Get([FromQuery]string city, [FromQuery]double? lat, [FromQuery]double? lon)
         {
             try
@@ -33,10 +34,10 @@ namespace Conexa.Music.Api.Controllers
                     {
                         return BadRequest("Please fill [lat] and [lon] or [city]");
                     }
-                    return Ok(await _songAppService.GetSongsByCoordinates(lat.Value, lon.Value));
+                    return Ok(await QueryAsync(new GetSongsByTemperatureOfCoordinatesQuery(lat.Value, lon.Value)));
                 }
                 else
-                    return Ok(await _songAppService.GetSongsByTemperatureOfCity(city));
+                    return Ok(await QueryAsync(new GetSongsByTemperatureOfCityQuery(city)));
             }
             catch (Exception)
             {

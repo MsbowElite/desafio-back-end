@@ -1,7 +1,5 @@
 ﻿using Conexa.Core.Spotify;
 using Conexa.Core.Weather;
-using Conexa.Music.Application.Interfaces;
-using Conexa.Music.Application.Services;
 using Conexa.Music.Data.Services;
 using Conexa.Music.Domain.Interfaces;
 using Microsoft.Extensions.Configuration;
@@ -20,7 +18,6 @@ namespace Conexa.Music.Api.Configurations
     {
         public static void AppServiceConfiguration(this IServiceCollection services)
         {
-            services.AddScoped<ISongAppService, SongAppService>();
         }
     }
 }

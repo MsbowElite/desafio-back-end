@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Conexa.Music.Application.ViewModels
+namespace Conexa.Music.Application.Songs
 {
-    public class SongViewModel
+    public class SongDto
     {
         public string Name { get; set; }
 
