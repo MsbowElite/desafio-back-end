@@ -22,8 +22,6 @@ namespace Conexa
         {
             services.HttpClientServiceConfiguration(Configuration);
 
-            services.AppServiceConfiguration();
-
             services.AddSwaggerConfiguration();
 
             services.AddAutoMapperConfiguration();
