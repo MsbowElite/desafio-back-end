@@ -15,8 +15,13 @@ using System.Threading.Tasks;
 
 namespace Conexa.Music.Api.Configurations
 {
+
     public static class SetupHttpClientServices
     {
+        /// <summary>
+        /// Configuration of Conexa third party Http services.
+        /// Injection of external services setting up base urls and authetication responsibilities.
+        /// </summary>
         public static void HttpClientServiceConfiguration(this IServiceCollection services, IConfiguration configuration)
         {
             // configure strongly typed settings objects
@@ -40,6 +45,12 @@ namespace Conexa.Music.Api.Configurations
             });
         }
 
+        /// <summary>
+        /// Take the authorization object of Spotify account by specific credentials from appsettings.
+        /// </summary>
+        /// <param name="id">Client id.</param>
+        /// <param name="secret">Client secret.</param>
+        /// <returns>Access token for api calling.</returns>
         public static string GetSpotifyAccessToken(string id, string secret)
         {
             string url5 = "https://accounts.spotify.com/api/token";

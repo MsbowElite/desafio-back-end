@@ -33,7 +33,7 @@ namespace Conexa.Music.Api.Controllers
                     {
                         return BadRequest("Please fill [lat] and [lon] or [city]");
                     }
-                    return Ok(await _songAppService.GetSongsByTemperatureOfCity(city));
+                    return Ok(await _songAppService.GetSongsByCoordinates(lat.Value, lon.Value));
                 }
                 else
                     return Ok(await _songAppService.GetSongsByTemperatureOfCity(city));

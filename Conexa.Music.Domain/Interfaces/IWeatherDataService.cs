@@ -10,6 +10,6 @@ namespace Conexa.Music.Domain.Interfaces
     {
         Task<double> GetTemperatureByCityName(string cityName);
 
-        Task<WeatherResult> GetByCoordinates(int latitude, int longitude, byte numberOfCities);
+        Task<double> GetTemperatureByCoordinates(double latitude, double longitude, byte numberOfCities = 1);
     }
 }

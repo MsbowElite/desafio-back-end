@@ -38,6 +38,17 @@ namespace Conexa.Music.Application.Services
             return _mapper.Map<IEnumerable<SongViewModel>>(spotifyItens);
         }
 
+        public async Task<IEnumerable<SongViewModel>> GetSongsByCoordinates(double latitude, double longitude)
+        {
+            var temperature = await _weatherDataService.GetTemperatureByCoordinates(latitude, longitude);
+
+            var genre = SelectSongGenreByTemeprature(temperature);
+
+            var spotifyItens = await _spotifyDataService.GetTracksByGenre(genre);
+
+            return _mapper.Map<IEnumerable<SongViewModel>>(spotifyItens);
+        }
+
         private string SelectSongGenreByTemeprature(double temperature)
         {
             if (temperature > (int)TemperatureRanges.LowerPartyTemperature && temperature <= (int)TemperatureRanges.HigherTemperature)
@@ -53,11 +64,6 @@ namespace Conexa.Music.Application.Services
                 return SongGenres.Classic;
 
             throw new Exception("Invalid temperature");
-        }
-
-        public Task<SongViewModel> GetSongsByCoordinates(int latitude, int longitude)
-        {
-            throw new NotImplementedException();
         }
 
         public void Dispose()

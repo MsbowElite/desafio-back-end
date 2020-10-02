@@ -40,6 +40,8 @@ namespace Conexa
 
             services.AddMediatR(typeof(Startup));
 
+            services.AddHealthChecks();
+
             services.AddControllers();
         }
 
@@ -59,6 +61,7 @@ namespace Conexa
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapHealthChecks("/healthcheck");
                 endpoints.MapControllers();
             });
 

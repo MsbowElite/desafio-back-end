@@ -21,6 +21,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Conexa.WebApi.Core", "Conex
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Conexa.Core", "Conexa.Core\Conexa.Core.csproj", "{1BB92580-55FB-40A2-A53C-0C85DD6E4C27}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{CA1FA672-7C32-426D-8319-15331715828D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Conexa.Music.Api.IntegrationTests", "Conexa.Music.Api.IntegrationTests\Conexa.Music.Api.IntegrationTests.csproj", "{0F55366B-4442-4E8D-8CD2-0AB96873C9C8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,10 @@ Global
 		{1BB92580-55FB-40A2-A53C-0C85DD6E4C27}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1BB92580-55FB-40A2-A53C-0C85DD6E4C27}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1BB92580-55FB-40A2-A53C-0C85DD6E4C27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F55366B-4442-4E8D-8CD2-0AB96873C9C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F55366B-4442-4E8D-8CD2-0AB96873C9C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F55366B-4442-4E8D-8CD2-0AB96873C9C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F55366B-4442-4E8D-8CD2-0AB96873C9C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,6 +71,8 @@ Global
 		{B9F7D68C-9D00-49C7-BE5D-DA17B15C67CC} = {41DDFEC7-0869-4238-BF64-610DB0D81DB4}
 		{296D9DB1-3BEA-410A-836D-91E9FB001D73} = {915648FE-460A-4776-B313-CA31A0F4F218}
 		{1BB92580-55FB-40A2-A53C-0C85DD6E4C27} = {915648FE-460A-4776-B313-CA31A0F4F218}
+		{CA1FA672-7C32-426D-8319-15331715828D} = {41DDFEC7-0869-4238-BF64-610DB0D81DB4}
+		{0F55366B-4442-4E8D-8CD2-0AB96873C9C8} = {CA1FA672-7C32-426D-8319-15331715828D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {96A016E5-B737-450A-B4D2-3DB8A490C937}

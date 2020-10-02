@@ -35,11 +35,18 @@ namespace Conexa.Music.Data.Services
                 return 0;
         }
 
-        public async Task<WeatherResult> GetByCoordinates(int latitude, int longitude, byte numberOfCities = 1)
+        public async Task<double> GetTemperatureByCoordinates(double latitude, double longitude, byte numberOfCities = 1)
         {
-            return await JsonSerializer.DeserializeAsync<WeatherResult>
-                (await _httpClient.GetStreamAsync($"&lat={latitude}&long={longitude}&cnt={numberOfCities}"), new JsonSerializerOptions()
+            UriBuilder builder = new UriBuilder(_httpClient.BaseAddress + $"&lat={latitude}&lon={longitude}&cnt={numberOfCities}");
+
+            var weatherResult = await JsonSerializer.DeserializeAsync<WeatherResult>
+                (await _httpClient.GetStreamAsync(builder.Uri), new JsonSerializerOptions()
                 { PropertyNameCaseInsensitive = true });
+
+            if (weatherResult.Main != null)
+                return weatherResult.Main.Temp;
+            else
+                return 0;
         }
     }
 }

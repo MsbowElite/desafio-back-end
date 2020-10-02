@@ -10,6 +10,6 @@ namespace Conexa.Music.Application.Interfaces
     {
         Task<IEnumerable<SongViewModel>> GetSongsByTemperatureOfCity(string city);
 
-        Task<SongViewModel> GetSongsByCoordinates(int latitude, int longitude);
+        Task<IEnumerable<SongViewModel>> GetSongsByCoordinates(double latitude, double longitude);
     }
 }
