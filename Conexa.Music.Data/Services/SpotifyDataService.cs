@@ -19,9 +19,9 @@ namespace Conexa.Music.Data.Services
                 throw new ArgumentNullException(nameof(httpClient));
         }
 
-        public async Task<List<Item>> GetTracksByGenre(string genre)
+        public async Task<List<Item>> GetTracksByGenre(string genre, int offset, int limit)
         {
-            UriBuilder builder = new UriBuilder(_httpClient.BaseAddress + $"/search?q=genre:{genre}&type=track");
+            UriBuilder builder = new UriBuilder(_httpClient.BaseAddress + $"/search?q=genre:{genre}&type=track&offset={offset}&limit={limit}");
 
             var spotifyResult = await JsonSerializer.DeserializeAsync<SpotifyResult>
                 (await _httpClient.GetStreamAsync(builder.Uri), new JsonSerializerOptions()

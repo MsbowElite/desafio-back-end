@@ -17,15 +17,21 @@ namespace Conexa.Music.Application.Songs.GetSongsByTemperatureOfCoordinates
         [Required]
         public double Longitude { get; }
 
+        public int Limit { get; set; }
+
+        public int Offset { get; set; }
+
         public GetSongsByTemperatureOfCoordinatesQuery()
         {
         }
 
         [JsonConstructor]
-        public GetSongsByTemperatureOfCoordinatesQuery(double latitude, double longitude)
+        public GetSongsByTemperatureOfCoordinatesQuery(double latitude, double longitude, int offset, int limit)
         {
             Latitude = latitude;
             Longitude = longitude;
+            Limit = limit;
+            Offset = offset;
         }
     }
 }

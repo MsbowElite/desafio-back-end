@@ -8,6 +8,6 @@ namespace Conexa.Music.Domain.Interfaces
 {
     public interface ISpotifyDataService
     {
-        Task<List<Item>> GetTracksByGenre(string genre);
+        Task<List<Item>> GetTracksByGenre(string genre, int offset, int limit);
     }
 }

@@ -13,14 +13,20 @@ namespace Conexa.Music.Application.Songs.GetSongsByTemperatureOfCity
         [Required]
         public string City { get; }
 
+        public int Limit { get; set; }
+
+        public int Offset { get; set; }
+
         public GetSongsByTemperatureOfCityQuery()
         {
         }
 
         [JsonConstructor]
-        public GetSongsByTemperatureOfCityQuery(string city)
+        public GetSongsByTemperatureOfCityQuery(string city, int offset, int limit)
         {
             City = city;
+            Limit = limit;
+            Offset = offset;
         }
     }
 }

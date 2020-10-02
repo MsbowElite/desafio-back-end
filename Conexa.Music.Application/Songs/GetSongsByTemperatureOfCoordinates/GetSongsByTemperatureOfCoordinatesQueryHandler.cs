@@ -30,7 +30,7 @@ namespace Conexa.Music.Application.Songs.GetSongsByTemperatureOfCoordinates
 
             var genre = SongGenreProvider.GetGenreByTemperature(temperature);
 
-            var spotifyItens = await _spotifyDataService.GetTracksByGenre(genre);
+            var spotifyItens = await _spotifyDataService.GetTracksByGenre(genre, request.Offset, request.Limit);
 
             return _mapper.Map<IEnumerable<SongDto>>(spotifyItens);
         }
